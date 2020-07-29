@@ -1,0 +1,77 @@
+
+
+body {
+    background: url(../pictures/body_image.jpg) no-repeat center;
+   background-size: cover;
+   
+}
+/* 'https://static-communitytable.parade.com/wp-content/uploads/2014/03/rethink-target-heart-rate-number-ftr.jpg' */
+*[role="form"] {
+   max-width: 530px;
+   padding: 5px;
+   margin: 0 auto;
+   border-radius: 0.3em;
+   background-color: 242,242,242,0.6;
+}
+
+*[role="form"] h2 { 
+   font-family: 'Open Sans' , sans-serif;
+   font-size: 20px;
+   font-weight: 600;
+   color: #000000;
+   margin-top: 5%;
+   text-align: center;
+   text-transform: uppercase;
+   letter-spacing: 2px;
+}
+/*
+דף הרשמה
+*/
+/* #FormHomeNumber{
+    position: absolute;
+    bottom: 0;
+    left:60%;
+    margin: 0;
+    padding: 0;
+} */
+.form-control{
+    margin: 0;
+}
+.form-group{
+    margin: 0;
+}
+label{
+    margin-left: 6px;
+}
+#btnRegister{
+    width: 90px;
+ margin-left: 40%;
+ margin: 10px 200px;
+}
+#Update_btn{
+    width: 90px;
+    margin-left: 40%;
+    margin: 10px 200px;
+}
+
+
+
+
+
+
+
+
+/*
+profile page css
+*/
+
+/* #logout{
+    margin-left: 50px;
+} */
+#LoginNav{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+top: 90px;
+left: 30px;
+}
