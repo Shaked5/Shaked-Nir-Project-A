@@ -1,0 +1,14 @@
+.display-4{
+    /* margin-left: 40%; */
+    text-align: center;
+    font-size: 150px;
+}
+
+.container-fluid{
+    height: 800px;
+}
+
+.login_img{
+    size: 15px;
+
+}

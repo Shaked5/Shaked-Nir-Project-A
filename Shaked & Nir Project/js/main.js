@@ -141,7 +141,11 @@ $(document).ready(function () {
         imagepPath = `pictures/${imagepPath}`
         FileReader=new FileReader();
         console.log(imagepPath)
-        $('myFile').append(imagepPath.FileReader)
+        $('#myFile').document.ready(function(){
+            if('#myFile' !=null){
+                
+            }
+        })
 
     }
 
