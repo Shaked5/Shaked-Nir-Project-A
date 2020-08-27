@@ -28,7 +28,8 @@ $(document).on(`submit`, `#form-horizontal`, (event) => {
     let last_name = $(`#lastName`).val()
     let user_name = $(`#userName`).val()
     let email = $(`#email`).val()
-    let password = $(`#password`).val()
+    var password = $(`#password`).val()
+    var pass = document.querySelector(`#password`);
     let confirm_password = $(`#confirm_password`).val()
     let date_of_birth = $(`#birthDate`).val()
     let phone_number = $(`#phoneNumber`).val()
@@ -36,19 +37,41 @@ $(document).on(`submit`, `#form-horizontal`, (event) => {
     let street = $(`#street`).val()
     let home_number = $(`#HomeNumber`).val()
     let file = $(`#myFile`).val()
-    console.log(file)
+    
     if (password != confirm_password)
         alert(`the pass isnot same`)
 
-    if (email == localStorage.email)
-        alert(`email is already exist`)
+    let checkEmail=JSON.parse(localStorage.getItem('list_Users'))
+    for(let i=0;i<checkEmail.length;i++){
+        if (email == checkEmail[i].email){
+            alert(`email is already exist`)
+            return;
+        }
+    }
+    //
+    for(let i=0;i<user_name.length;i++){
+        if(!(user_name[i]>='A'&&user_name[i]<='Z'||user_name[i]>='a'&&user_name[i]<='z'||user_name[i]>='!'&&user_name[i]<='?')){
+            alert('only english letter in user name')
+            return;
+        }
+
+    }
+    if(home_number<0)
+    {
+      alert('wrong home number')
+        return;
+    }
+
     var retrievedData = localStorage.getItem(`list_Users`);
     var list_Users = [];
     list_Users = JSON.parse(retrievedData);
-    let user = new User(first_name, last_name, user_name, email, password, confirm_password, date_of_birth, phone_number, city, street, home_number, file)
     if (list_Users == null) {
         var list_Users = [];
+        var serial_number = 0;
     }
+    serial_number = list_Users.length + 1;
+    let user = new User(serial_number, first_name, last_name, user_name, email, password, confirm_password, date_of_birth, phone_number, city, street, home_number, file)
+    console.log(list_Users.length)
     list_Users.push(user);
 
     localStorage.setItem(`list_Users`, JSON.stringify(list_Users))
@@ -70,17 +93,18 @@ $(document).on(`submit`, `#login-form`, (event) => {
 
     //JSON.parse() --> הופך את הטקסט לאובייקט
     let user = JSON.parse(localStorage.getItem(`list_Users`))
-    console.log(user)
-    console.log(user.length)
+
     var LoginSuccess = false;
     //בדיקה ששם המשתמש והסיסמה זהים
+    console.log(user)
+    debugger
     for (let index = 0; index < user.length; index++) {
         if (user_nameInput == user[index].user_name && password == user[index].password) {
             LoginSuccess = true;
             //Session יוצרים
             sessionStorage.setItem(`login_user`, JSON.stringify(user[index]))
             //הפנייה לדף פרופיל
-            location.href = `./profilePage.html`
+            location.href = './profilePage.html'
 
             continue;
         }
@@ -99,9 +123,14 @@ $(document).on(`click`, `#logout`, () => {
     location.href = `./index.html`
 })
 
+// //אירוע לחיצה על כפתור game
+ $('#GameButton').on('click',()=>{
+  location.href='./game.html'
+})
+
 // פונקציה לבדיקה האם המשתמש נכנס דרך הפרופיל לעדכון פרטים
 function getUrlParameter(sParam) {
-    var sPageURL = window.location.search.substring(1),
+    let sPageURL = window.location.search.substring(1),
         sURLVariables = sPageURL.split('&'),
         sParameterName,
         i;
@@ -118,11 +147,12 @@ function getUrlParameter(sParam) {
 $(document).ready(function () {
     var param = getUrlParameter("Update");
     console.log(param)
-    if (param != undefined) {
+    if (param!=undefined) {
         $('#btnRegister').remove();
         $('#h2forUpdatePage').empty();
         $('#h2forUpdatePage').append('Update Profile');
-        $('#form-horizontal').append('<button class="btn-primary btn-block" id="Update_btn">Update</button>')
+        $('#form-horizontal').attr('id', 'form-update')
+        $('#form-update').append('<button class="btn-primary btn-block" id="Update_btn" type="submit">Update</button>')
         let userData = JSON.parse(sessionStorage.getItem('login_user'))
         console.log(userData)
         $('#firstName').val(userData.first_name)
@@ -138,17 +168,45 @@ $(document).ready(function () {
         $('#HomeNumber').val(userData.home_number)
         let splitFile = userData.file.split("\\")
         let imagepPath = splitFile.length > 2 ? splitFile[2] : null
-        imagepPath = `pictures/${imagepPath}`
-        FileReader=new FileReader();
-        console.log(imagepPath)
-        $('#myFile').document.ready(function(){
-            if('#myFile' !=null){
-                
-            }
+        $('#myFileHide').hide()
+
+
+
+
+        $(document).on(`submit`, `#form-update`, (event) => {
+            event.preventDefault();
+
+            var Users = JSON.parse(localStorage.getItem('list_Users'));
+            console.log(Users.length)
+            console.log(Users)
+            debugger
+            let id = JSON.parse(sessionStorage.getItem('login_user'));
+            id = id.serial_number - 1;
+            console.log(id)
+
+            Users[id].first_name = $('#firstName').val();
+            Users[id].last_name = $('#lastName').val();
+            Users[id].user_name = $(`#userName`).val();
+            Users[id].email = $('#email').val();
+            Users[id].password = $('#password').val();
+            Users[id].confirm_password = $('#confirm_password').val();
+            Users[id].date_of_birth = $('#birthDate').val();
+            Users[id].phone_number = $('#phoneNumber').val();
+            Users[id].city = $('#city').val();
+            Users[id].street = $('#street').val();
+            Users[id].home_number = $('#HomeNumber').val();
+            
+            localStorage.setItem("list_Users", JSON.stringify(Users));
+            sessionStorage.setItem('login_user',JSON.stringify(Users[id]))
+
+            location.href = './profilePage.html';
+
+
+
         })
 
     }
 
-
 })
-// .click(function () { alert('hi'); });
+
+

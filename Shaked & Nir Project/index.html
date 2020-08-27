@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,21 +13,19 @@
     </script>
     <script src="./js/function.js"></script>
     <script src="./js/main.js" defer type="module"></script>
-    <link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="./css/profilePage.css">
 </head>
+
 <body onload="loginPageLoaded()">
-    
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <h1 class="display-4">Login Page</h1>
-        </div>
-        <div class="login_img">
-            <img src="/pictures/images.png" alt="login_img">
-        </div>
+
+    <div class="container">
+        <h1 id="titleProfile" class="display-4 row justify-content-center">Login Page</h1>
+    </div>
+    <div class="login_img">
     </div>
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-md-6">
+            <div class="justify-content-center">
                 <form id="login-form">
                     <div class="form-group">
                         <label for="user_name">User name</label>
@@ -36,9 +35,10 @@
                         <label for="password">Password</label>
                         <input type="password" class="form-control" id="password">
                     </div>
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button id="loginBtn" type="submit" class="btn btn-primary justify-content-center">Login</button>
                 </form>
-                <p class="mt-2">
+
+                <p class="mt-4" style="color: white;">
                     Not a member? <a href="./register.html">Register</a>
                 </p>
             </div>
@@ -47,4 +47,5 @@
 
 
 </body>
+
 </html>

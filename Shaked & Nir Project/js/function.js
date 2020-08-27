@@ -13,12 +13,10 @@ function profilePageLoaded() {
     //כתיבת ההודעה
     $(`#welcome-msg`).html(`Welcome ${user.user_name}`)
     //הבאת הקובץ של התמונת פרופיל
-    console.log(user.file.indexOf("fakepath"))
     let splitFile = user.file.split("\\")
     let imagepPath = splitFile.length > 2 ? splitFile[2] : null
-    console.log(imagepPath)
     imagepPath =`pictures/${imagepPath}`
-    console.log(imagepPath)
+   
 
     $(`#ProfilePic`).append(`<img src="${imagepPath}"></img>`)
      
@@ -40,3 +38,4 @@ function loginPageLoaded() {
     if (sessionStorage.getItem(`login_user`) != null)
         location.href = "./profilePage.html"
 }
+

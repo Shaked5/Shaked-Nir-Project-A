@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space-Shooting-Game</title>
+    <link rel="stylesheet" href="./css/game.css">
+    <link rel="shortcut icon" href="./pictures/game/laser-shot.png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./js/game.js"></script>
+</head>
+
+<body>
+    <div id="headerButtons">
+        <button id="change_music" onclick="changeMusic()">change music</button>
+        <button id="change_backGround" onclick="changeBackground()"> change background</button>
+    </div>
+    <div id="main-play-area">
+        <img id="player-controller" src="./pictures/game/space-ship.png">
+
+        <div id="start-Button">
+            <h1>Start</h1>
+        </div>
+    </div>
+    <div class="header-container">
+    <div class="score">
+         Score: <span>0</span>
+    </div>
+    <div id="Timer">
+        Minutes:<span id="minutes">00</span>
+        Seconds:<span id="second">00</span>
+   </div>
+</div>
+</body>
+
+</html>

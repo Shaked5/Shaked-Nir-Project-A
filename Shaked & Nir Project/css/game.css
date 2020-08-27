@@ -1,0 +1,92 @@
+html{
+    height: 100vh;
+}
+body{
+ height: 95vh;
+}
+
+#main-play-area{
+    background-image: url('../pictures/game/DD-Space-Background-44012-Preview.jpg');
+    width: 800px;
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border: 1px solid black;
+}
+#player-controller{
+    width: 100px;
+    height: 80px;
+    position: relative;
+    top: 180px;
+    left: 20px;
+}
+.laser{
+    width: 80px;
+    height: 40px;
+    position: relative;
+}
+.monster{
+    width: 60px;
+    height: 50px;
+    position: absolute;
+}
+.monster-transition{
+    opacity: 1;
+    transition: opacity 1.2s ease-out;
+}
+.dead-monster{
+    width: 60px;
+    height: 50px;
+    position: absolute;
+    opacity: 0;
+}
+#start-Button{
+    position: absolute;
+    width: 70px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+#start-Button:hover{
+    cursor: pointer;
+}
+.header-container{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+.score{
+    height: 50px;
+    width: 150px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+#Timer{
+   align-content: flex-start;
+   font-weight: 700;
+   font-size: 18px;
+}
+
+#headerButtons{
+ width: 300px;
+  margin-left: 40%;
+  margin-top: 20px;
+}
+#change_music{
+    width: 100px;
+    margin: 10px;
+    padding: 5px;
+    background-color: lightskyblue;
+}
+#change_backGround{
+    padding: 5px;
+    background-color:lightskyblue;
+}
+
+

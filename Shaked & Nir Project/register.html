@@ -18,95 +18,78 @@
 <body class="form">
 
     <div class="container">
-    <form id="form-horizontal" role="form">
-        <h2 id="h2forUpdatePage">Registration</h2>
-        <div class="form row">
-            <div class="form-group col-xl-6">
-                <label for="firstName" class="col-sm-12 control-label">First Name</label>
-                <input type="text" required id="firstName" class="form-control" autofocus>
+        <form id="form-horizontal" role="form">
+            <h2 id="h2forUpdatePage">Registration</h2>
+            <div class="form row">
+                <div class="form-group col-xl-6">
+                    <label for="firstName" class="col-sm-12 control-label">First Name</label>
+                    <input type="text" required id="firstName" class="form-control" autofocus>
 
-            </div>
-            <div class="form-group col-xl-6">
-                <label for="lastName" class="col-sm-12 control-label">Last Name</label>
-                <input type="text" required id="lastName" class="form-control" autofocus>
-            </div>
-            <div class="form-group col-xl-6">
-                <label for="userName" class="col-sm-12 control-label">User Name</label>
-                <input type="text" required id="userName" class="form-control" autofocus>
-            </div>
-            <div class="form-group col-xl-6">
-                <label for="email" class="col-sm-12 control-label">Email* </label>
-                <input type="email" required id="email" class="form-control" placeholder="name@example.com"
-                    name="email">
-            </div>
-            <div class="form-group col-xl-6">
-                <label for="birthDate" class="col-sm-12 control-label">Date of Birth*</label>
-                <input type="date" required id="birthDate" class="form-control">
-            </div>
-            <div class="form-group col-xl-6">
+                </div>
+                <div class="form-group col-xl-6">
+                    <label for="lastName" class="col-sm-12 control-label">Last Name</label>
+                    <input type="text" required id="lastName" class="form-control" autofocus>
+                </div>
+                <div class="form-group col-xl-6">
+                    <label for="userName" class="col-sm-12 control-label">User Name</label>
+                    <input type="text" required id="userName" class="form-control" autofocus>
+                </div>
+                <div class="form-group col-xl-6">
+                    <label for="email" class="col-sm-12 control-label">Email* </label>
+                    <input type="email" required id="email" class="form-control" placeholder="name@example.com"
+                        name="email">
+                </div>
+                <div class="form-group col-xl-6">
+                    <label for="birthDate" class="col-sm-12 control-label">Date of Birth*</label>
+                    <input type="date" required id="birthDate" class="form-control">
+                </div>
+                <div class="form-group col-xl-6">
 
-                <label for="phoneNumber" class="col-sm-12 control-label">Phone number </label>
-                <input type="number" required id="phoneNumber" class="form-control">
+                    <label for="phoneNumber" class="col-sm-12 control-label">Phone number </label>
+                    <input type="number" required id="phoneNumber" class="form-control">
+                </div>
             </div>
-        </div>
-        <div class="form row">
-            <div class="form-group col-xl-6">
-                <label for="password" class="col-sm-12 control-label">Password*</label>
-                <input type="password" required id="password" class="form-control">
+            <div class="form row">
+                <div class="form-group col-xl-6">
+                    <label for="password" class="col-sm-12 control-label">Password*</label>
+                    <input type="password" required id="password"  class="form-control">
+                </div>
+                <div class="form-group col-xl-6">
+                    <label for="password" class="col-sm-12 control-label">Confirm Password*</label>
+                    <input type="password" required id="confirm_password" class="form-control">
+                </div>
             </div>
-            <div class="form-group col-xl-6">
-                <label for="password" class="col-sm-12 control-label">Confirm Password*</label>
-                <input type="password" required id="confirm_password" class="form-control">
+            <div id="myFileHide" class="form-group">
+                <label for="file" class="col-sm-5 control-label">Profile picture</label>
+                <input type="file" id="myFile">
             </div>
-        </div>
-        <div class="form-group">
-            <label for="file" class="col-sm-5 control-label">Profile picture</label>
-            <input type="file" id="myFile">
-        </div>
 
-        <div class="form row">
-            <div class="form-group col-xl-5">
-                <label for="city" class="col-sm-12 control-label">City* </label>
-                <input type="text" list="cities" id="city" required class="form-control">
-                <datalist id="cities"></datalist>
+            <div class="form row">
+                <div class="form-group col-xl-5">
+                    <label for="city" class="col-sm-12 control-label">City* </label>
+                    <input type="text" list="cities" id="city" required class="form-control">
+                    <datalist id="cities"></datalist>
+                </div>
+                <div class="form-group col-xl-4">
+                    <label for="street" class="col-sm-12 control-label">Street* </label>
+                    <input type="text" id="street" required placeholder="Street" class="form-control" name="Street">
+                </div>
+                <div class="form-group col-xl-3" id="FormHomeNumber">
+                    <label for="Home_number">Number* </label>
+                    <input type="number" required id="HomeNumber" class="form-control" name="Home_number">
+                </div>
             </div>
-            <div class="form-group col-xl-4">
-                <label for="street" class="col-sm-12 control-label">Street* </label>
-                <input type="text" id="street" required placeholder="Street" class="form-control" name="Street">
-            </div>
-            <div class="form-group col-xl-3" id="FormHomeNumber">
-                <label for="Home_number">Number* </label>
-                <input type="number" required id="HomeNumber" class="form-control" name="Home_number">
-            </div>
-        </div>
-        <button id="btnRegister" type="submit" class="btn-primary btn-block">Register</button>
-    </form> <!-- /form -->
-    </div>   <!-- ./container -->
-  
+                <button id="btnRegister" type="submit" class="btn-primary btn-block">Register</button>
+
+                <p class="mt-4 justify-content-center">
+                    Are you a member? <a href="./index.html">Login</a>
+                </p>
+        </form> <!-- /form -->
+       
+
+    </div> <!-- ./container -->
 
 
-    <script>
-        // function getUrlParameter(sParam) {
-        //     var sPageURL = window.location.search.substring(1),
-        //         sURLVariables = sPageURL.split('&'),
-        //         sParameterName,
-        //         i;
-
-        //     for (i = 0; i < sURLVariables.length; i++) {
-        //         sParameterName = sURLVariables[i].split('=');
-
-        //         if (sParameterName[0] === sParam) {
-        //             return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
-        //         }
-        //     }
-
-        // };
-        // $(document).ready(function () {
-        //     var param = getUrlParameter("Update");
-        //     console.log(param)
-
-        // })
-    </script>
 </body>
 
 </html>

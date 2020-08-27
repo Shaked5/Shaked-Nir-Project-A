@@ -1,0 +1,54 @@
+html{
+    height:100vh;
+}
+body {
+   background: url(../pictures/rock-reflection-australia-profile.jpg) no-repeat center;
+   background-size: cover;
+}
+label{
+    color: white;
+}
+
+#textProfile{
+    color: white;
+
+}
+
+#Update,#Update:hover{
+    color: white;
+    text-decoration: none;
+}
+div.btn-group a{
+    width: 100%;
+    text-align: center;
+}
+#titleProfile{
+    color: white;
+    margin-top: 60px;
+    margin: 40px 0;
+}
+#welcome-msg{
+    color: white;
+    margin-top: 25px;
+    margin-left: 30px;
+}
+.container{
+    width: 100%;
+    margin-top: 100px;
+}
+
+.login_img{
+    size: 15px;
+}
+#login-form{
+    margin-top: 80px;
+    width: 100%;
+   
+}
+.form-control{
+    width: 100%;
+}
+#loginBtn{
+    margin-left: 33%;
+    margin-top: 20px;
+}
