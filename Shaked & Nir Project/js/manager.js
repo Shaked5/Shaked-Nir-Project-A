@@ -158,28 +158,99 @@ $('.delete_img').on('click', (event) => {
 })
 
 
-$('.edit_img').on('click', (event) => {
-    location.href = "register.html?Manager"
 
+$('.edit_img').on('click', (event) => {
+    
+    debugger;
+    temp2 = event.target.value;
+    console.log(temp2)
+    usernamecheck=temp2;
+    if(usernamecheck=!undefined)
+    window.location =`register.html?Manager=${temp2}`;
+    // window.location = '@Url.Action("register.html?Manager")' + temp2;
 })
-    // var temp = event.target.value;
-    // console.log(temp)
-    // for (let i = 1; i < userarr.length; i++) {
-    //     if (userarr[i].user_name == temp) {
-    //         console.log("in")
-    //         $('#firstName').val(userarr[i].first_name)
-    //         $('#lastName').val(userarr[i].last_name)
-    //         $(`#userName`).val(userarr[i].user_name)
-    //         $('#email').val(userarr[i].email)
-    //         $('#password').val(userarr[i].password)
-    //         $('#confirm_password').val(userarr[i].confirm_password)
-    //         $('#birthDate').val(userarr[i].date_of_birth)
-    //         $('#phoneNumber').val(userarr[i].phone_number)
-    //         $('#city').val(userarr[i].city)
-    //         $('#street').val(userarr[i].street)
-    //         $('#HomeNumber').val(userarr[i].home_number)
-    //     }
-    // }
+
+
+
+// $('.edit_img').on('click', (event) => {
+//     location.href = "register.html?Manager"
+
+// })
+
+
+// פונקציה לבדיקה האם המשתמש נכנס דרך הפרופיל לעדכון פרטים
+function getUrlParameter(sParam) {
+    let sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+    }
+
+};
+
+const queryString = window.location.search;
+
+var temp2;
+var param;
+var usernamecheck;
+
+
+//בדיקה האם נכנסת לעדכון פרטים דרך דף מנהל
+function editUpdateManager(usernamecheck, param) {
+    
+    console.log(queryString);
+    console.log(param)
+    if (param != undefined) {
+        $('#btnRegister').remove();
+        $('#h2forUpdatePage').empty();
+        $('#h2forUpdatePage').append('Update Profile');
+        $('#form-horizontal').attr('id', 'form-update')
+        $('#form-update').append('<button class="btn-primary btn-block" id="Update_btn" type="submit">Update</button>')
+
+
+        for ( i = 1; i < userarr.length; i++) {
+            if (userarr[i].user_name == param) {
+                console.log("in")
+                $('#firstName').val(userarr[i].first_name)
+                $('#lastName').val(userarr[i].last_name)
+                $(`#userName`).val(userarr[i].user_name)
+                $('#email').val(userarr[i].email)
+                $('#password').val(userarr[i].password)
+                $('#confirm_password').val(userarr[i].confirm_password)
+                $('#birthDate').val(userarr[i].date_of_birth)
+                $('#phoneNumber').val(userarr[i].phone_number)
+                $('#city').val(userarr[i].city)
+                $('#street').val(userarr[i].street)
+                $('#HomeNumber').val(userarr[i].home_number)
+            }
+        }
+
+    }
+}
+
+
+
+$(document).ready(function (usernamecheck) {
+    console.log(temp2)
+    usernamecheck=temp2;
+    console.log(usernamecheck)
+    param = getUrlParameter("Manager");
+    console.log(param)
+    if (param) {
+        editUpdateManager(temp2, param)
+    }
+})
+
+
+
+
 
 
 
