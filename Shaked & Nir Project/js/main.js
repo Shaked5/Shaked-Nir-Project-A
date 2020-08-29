@@ -16,7 +16,7 @@ $(document).ready(function () {
             //html מטמיע את האופציות בתוך ה
             document.querySelector(`#cities`).innerHTML = options
         })
-        .catch((error) => { console.log(error) })
+        .catch((error) => {  })
 })
 
 //יצירת אירוע להרשמה
@@ -40,14 +40,18 @@ $(document).on(`submit`, `#form-horizontal`, (event) => {
     
     if (password != confirm_password)
         alert(`the pass isnot same`)
+     
 
     let checkEmail=JSON.parse(localStorage.getItem('list_Users'))
-    for(let i=0;i<checkEmail.length;i++){
-        if (email == checkEmail[i].email){
-            alert(`email is already exist`)
-            return;
+    if(checkEmail>0){
+        for(let i=0;i<checkEmail.length;i++){
+            if (email == checkEmail[i].email){
+                alert(`email is already exist`)
+                return;
+            }
         }
     }
+   
     //
     for(let i=0;i<user_name.length;i++){
         if(!(user_name[i]>='A'&&user_name[i]<='Z'||user_name[i]>='a'&&user_name[i]<='z'||user_name[i]>='!'&&user_name[i]<='?')){
@@ -71,13 +75,11 @@ $(document).on(`submit`, `#form-horizontal`, (event) => {
     }
     serial_number = list_Users.length + 1;
     let user = new User(serial_number, first_name, last_name, user_name, email, password, confirm_password, date_of_birth, phone_number, city, street, home_number, file)
-    console.log(list_Users.length)
     list_Users.push(user);
 
     localStorage.setItem(`list_Users`, JSON.stringify(list_Users))
 
 
-    console.log(list_Users)
     //חזרה לדף לוגין
     location.href = `./index.html`
 })
@@ -96,10 +98,14 @@ $(document).on(`submit`, `#login-form`, (event) => {
 
     var LoginSuccess = false;
     //בדיקה ששם המשתמש והסיסמה זהים
-    console.log(user)
-    debugger
     for (let index = 0; index < user.length; index++) {
-        if (user_nameInput == user[index].user_name && password == user[index].password) {
+        if(user_nameInput=="admin"&&password=="admin1234admin"){
+            LoginSuccess=true;
+            location.href="manager.html";
+        }
+    }
+    for (let index = 0; index < user.length; index++) {
+        if (user_nameInput == user[index].user_name && password == user[index].password&&user_nameInput!="admin"&&password!="admin1234admin") {
             LoginSuccess = true;
             //Session יוצרים
             sessionStorage.setItem(`login_user`, JSON.stringify(user[index]))
@@ -146,7 +152,6 @@ function getUrlParameter(sParam) {
 };
 $(document).ready(function () {
     var param = getUrlParameter("Update");
-    console.log(param)
     if (param!=undefined) {
         $('#btnRegister').remove();
         $('#h2forUpdatePage').empty();
@@ -154,7 +159,6 @@ $(document).ready(function () {
         $('#form-horizontal').attr('id', 'form-update')
         $('#form-update').append('<button class="btn-primary btn-block" id="Update_btn" type="submit">Update</button>')
         let userData = JSON.parse(sessionStorage.getItem('login_user'))
-        console.log(userData)
         $('#firstName').val(userData.first_name)
         $('#lastName').val(userData.last_name)
         $(`#userName`).val(userData.user_name)
@@ -177,12 +181,8 @@ $(document).ready(function () {
             event.preventDefault();
 
             var Users = JSON.parse(localStorage.getItem('list_Users'));
-            console.log(Users.length)
-            console.log(Users)
-            debugger
             let id = JSON.parse(sessionStorage.getItem('login_user'));
             id = id.serial_number - 1;
-            console.log(id)
 
             Users[id].first_name = $('#firstName').val();
             Users[id].last_name = $('#lastName').val();

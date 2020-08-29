@@ -9,7 +9,6 @@ function profilePageLoaded() {
 
     //session שליפת הפרטים של המשתמש מתוך ה
     let user = JSON.parse(sessionStorage.getItem(`login_user`))
-    console.log(user)
     //כתיבת ההודעה
     $(`#welcome-msg`).html(`Welcome ${user.user_name}`)
     //הבאת הקובץ של התמונת פרופיל

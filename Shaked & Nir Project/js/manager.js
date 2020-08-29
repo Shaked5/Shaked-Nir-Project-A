@@ -61,7 +61,7 @@ for (let i = 0; i < 1; i++) {
 }
 
 
-for (let i = 0; i < userarr.length; i++) {
+for (let i = 1; i < userarr.length; i++) {
     table += `<tr>`
     for (let j = 0; j <= 9; j++) {
         if (j == 0) {
@@ -77,9 +77,6 @@ for (let i = 0; i < userarr.length; i++) {
 
 
             tdPic += `</div>`
-
-            //     console.log(imagepPath)
-            // $('#tdPicture').append()
 
 
 
@@ -125,7 +122,7 @@ for (let i = 0; i < userarr.length; i++) {
             var delete_user = `<button class="delete_img" value ="${userarr[i].user_name}"></button>`;
             // `<button class="delete_img"  value ="${userarr[i].user_name}"></button>`;
             var edit_user = `<button class="edit_img" value ="${userarr[i].user_name}"></button>`;
- 
+
             table += `<td>${delete_user + edit_user}</td>`;
 
         }
@@ -135,7 +132,6 @@ for (let i = 0; i < userarr.length; i++) {
 }
 
 table += `</table>`;
-console.log(table)
 
 $('#mytable').html(table);
 
@@ -160,22 +156,13 @@ $('.delete_img').on('click', (event) => {
 
 
 $('.edit_img').on('click', (event) => {
-    
-    debugger;
+
     temp2 = event.target.value;
-    console.log(temp2)
-    usernamecheck=temp2;
-    if(usernamecheck=!undefined)
-    window.location =`register.html?Manager=${temp2}`;
-    // window.location = '@Url.Action("register.html?Manager")' + temp2;
+    usernamecheck = temp2;
+    if (usernamecheck = !undefined)
+        window.location = `register.html?Manager=${temp2}`;
 })
 
-
-
-// $('.edit_img').on('click', (event) => {
-//     location.href = "register.html?Manager"
-
-// })
 
 
 // פונקציה לבדיקה האם המשתמש נכנס דרך הפרופיל לעדכון פרטים
@@ -194,58 +181,79 @@ function getUrlParameter(sParam) {
     }
 
 };
-
 const queryString = window.location.search;
-
 var temp2;
 var param;
 var usernamecheck;
-
+var k;
 
 //בדיקה האם נכנסת לעדכון פרטים דרך דף מנהל
 function editUpdateManager(usernamecheck, param) {
-    
-    console.log(queryString);
-    console.log(param)
+
     if (param != undefined) {
         $('#btnRegister').remove();
         $('#h2forUpdatePage').empty();
         $('#h2forUpdatePage').append('Update Profile');
-        $('#form-horizontal').attr('id', 'form-update')
-        $('#form-update').append('<button class="btn-primary btn-block" id="Update_btn" type="submit">Update</button>')
+        $('#form-horizontal').attr('id', 'form-update-manager')
+        $('#form-update-manager').append('<button class="btn-primary btn-block" id="Update_btn" type="submit">Update</button>')
 
 
-        for ( i = 1; i < userarr.length; i++) {
-            if (userarr[i].user_name == param) {
-                console.log("in")
-                $('#firstName').val(userarr[i].first_name)
-                $('#lastName').val(userarr[i].last_name)
-                $(`#userName`).val(userarr[i].user_name)
-                $('#email').val(userarr[i].email)
-                $('#password').val(userarr[i].password)
-                $('#confirm_password').val(userarr[i].confirm_password)
-                $('#birthDate').val(userarr[i].date_of_birth)
-                $('#phoneNumber').val(userarr[i].phone_number)
-                $('#city').val(userarr[i].city)
-                $('#street').val(userarr[i].street)
-                $('#HomeNumber').val(userarr[i].home_number)
+        for (k = 1; k < userarr.length; k++) {
+            if (userarr[k].user_name == param) {
+                $('#firstName').val(userarr[k].first_name)
+                $('#lastName').val(userarr[k].last_name)
+                $(`#userName`).val(userarr[k].user_name)
+                $('#email').val(userarr[k].email)
+                $('#password').val(userarr[k].password)
+                $('#confirm_password').val(userarr[k].confirm_password)
+                $('#birthDate').val(userarr[k].date_of_birth)
+                $('#phoneNumber').val(userarr[k].phone_number)
+                $('#city').val(userarr[k].city)
+                $('#street').val(userarr[k].street)
+                $('#HomeNumber').val(userarr[k].home_number)
             }
         }
+
+        $(document).on(`submit`, `#form-update-manager`, (event) => {
+            event.preventDefault();
+            var UsersManager = JSON.parse(localStorage.getItem('list_Users'));
+            for (k = 1; k < userarr.length; k++) {
+                if (userarr[k].user_name == param) {
+                    UsersManager[k].first_name = $('#firstName').val();
+                    UsersManager[k].last_name = $('#lastName').val();
+                    UsersManager[k].user_name = $(`#userName`).val();
+                    UsersManager[k].email = $('#email').val();
+                    UsersManager[k].password = $('#password').val();
+                    UsersManager[k].confirm_password = $('#confirm_password').val();
+                    UsersManager[k].date_of_birth = $('#birthDate').val();
+                    UsersManager[k].phone_number = $('#phoneNumber').val();
+                    UsersManager[k].city = $('#city').val();
+                    UsersManager[k].street = $('#street').val();
+                    UsersManager[k].home_number = $('#HomeNumber').val();
+                }
+            }
+            localStorage.setItem("list_Users", JSON.stringify(UsersManager));
+
+
+            location.href = './manager.html';
+        })
+
+
+
 
     }
 }
 
 
 
+
 $(document).ready(function (usernamecheck) {
-    console.log(temp2)
-    usernamecheck=temp2;
-    console.log(usernamecheck)
+    usernamecheck = temp2;
     param = getUrlParameter("Manager");
-    console.log(param)
     if (param) {
         editUpdateManager(temp2, param)
     }
+
 })
 
 
@@ -254,6 +262,6 @@ $(document).ready(function (usernamecheck) {
 
 
 
- 
-  
+
+
 
